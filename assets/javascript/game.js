@@ -1,39 +1,115 @@
- // create a random nr between 19-120 ,(var random)
-    
- random = Math.floor(Math.random()*102)+19;
-           
+
+$(document).ready(function (){
+
+ // create a random nr between 19-120 
+ var random = Math.floor(Math.random()*102)+19;
  $("#computerGuess").text(random);
- // create a random nr for each crystal 1-12 (crystalRandom)
 
+ // create a random nr for each crystal between 1-12  
+
+var crystal1= Math.floor(Math.random()*12)+1;
+
+var crystal2= Math.floor(Math.random()*12)+1;
+
+var crystal3= Math.floor(Math.random()*12)+1;
+
+var crystal4= Math.floor(Math.random()*12)+1;
+  
+
+// create var to store wins and loses
+  var wins= 0;
+  var losses = 0;
+  var total=0;
+  $('#wins').text(wins);
+  $('#losses').text(losses);
+  $('#total').text(total);
+
+  function reset() {
+random = Math.floor(Math.random()*102)+19;
+    $("#computerGuess").text(random);
 crystal1= Math.floor(Math.random()*12)+1;
+
 crystal2= Math.floor(Math.random()*12)+1;
+
 crystal3= Math.floor(Math.random()*12)+1;
+
 crystal4= Math.floor(Math.random()*12)+1;
-  // there are 4 differnt crystals
-  // when click a crystal generates a number 1-12, variable scores
-  var scores=0;
 
+total=0;
+$('#total').text(total);
 
- 
+}
+
+function winner(){
+  alert("You won!");
+  wins++;
+  $("#wins").text(wins);
+  reset();
+}
+function loser(){
+  alert("You lose!");
+  losses++;
+  $("#losses").text(losses);
+  reset();
+}
+
+// clicking functions
   $("#c1").on("click", function() {
-      alert("I got clicked!");
-      scores+=crystal1;
+   total+=crystal1;
+   $("#total").text(total);
+   if (total==random){
+     winner();}
+     else if (total>random){
+       loser();
+     }
   });
 
-  $("#c1").on("click",".btn", function() {
-      scores+=crystal2;
+  $("#c2").on("click", function() {
+    total+=crystal2;
+    $("#total").text(total);
+    if (total==random){
+      winner();}
+      else if (total>random){
+        loser();
+      }
+   });
+  
+  $("#c3").on("click", function() {
+    total+=crystal3;
+    $("#total").text(total);   
+    if (total==random){
+      winner();}
+      else if (total>random){
+        loser();
+      }
   });
 
-  $("#c1").on("click",".btn", function() {
-      scores+=crystal3;
+  $("#c4").on("click", function() {
+    total+=crystal4;
+    $("#total").text(total);
+    if (total==random){
+      winner();}
+      else if (total>random){
+        loser();
+      }
   });
 
-  $("#c1").on("click",".btn", function() {
-      scores+=crystal4;
-  });
 
-  $("#number").text(scores);
-  $("#game-score").text("Scores");
+});
+ 
+
+
+
+
+
+
+
+
+
+//   $("#total").text(scores);
+//   $("#game-score").text("Scores");
+
+
 
 //   if (scores=120){
 //       $("#number").show(scores);
